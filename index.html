@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <style>
+        img {
+            max-width: 500px;
+        }
+
+        label {
+            border: 1px solid #000;
+            padding: 10px 45px;
+            margin-top: 11px;
+            margin-left: 123px;
+            color: #000;
+        }
+    </style>
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Example one</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="image.jpg" id="firstImage"><br />
+
+                        <label for="uploadFirst">Upload File</label>
+                        <input type="file" id="uploadFirst" style="display: none;" onchange="UploadFirst(event)">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Example two</h3>
+
+                    </div>
+                    <div class="card-body">
+                        <img src="image.jpg" id="secondImage" onclick="triggerClick()"><br />
+                        <input type="file" id="secondUpload" style="display: none;" onchange="UploadSecond(event)">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function UploadFirst(event) {
+            const file = event.target.files[0];
+
+
+            //file size
+            //file type
+            console.log('your image file size is ' + file.size)
+            console.log('your image file size is ' + file.type)
+
+
+
+            //read upload image
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (evt) => {
+
+                //if you need check image file dimenssion,
+                /// write new image onload function
+                let img = new Image();
+                img.onload = () => {
+                    console.log('your image width is ' + img.width)
+                    console.log('you image height is ' + img.height);
+
+                }
+                img.src = evt.target.result;
+
+                document.getElementById('firstImage').src = evt.target.result;
+
+            }
+
+        };
+
+
+        function triggerClick() {
+
+            document.getElementById('secondUpload').click();
+        };
+        function UploadSecond(event) {
+            const file = event.target.files[0];
+            //file size
+            //file type
+            console.log('your image file size is ' + file.size)
+            console.log('your image file size is ' + file.type)
+
+
+
+            //read upload image
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (evt) => {
+
+                //if you need check image file dimenssion,
+                /// write new image onload function
+                let img = new Image();
+                img.onload = () => {
+                    console.log('your image width is ' + img.width)
+                    console.log('you image height is ' + img.height);
+
+                }
+                img.src = evt.target.result;
+
+                document.getElementById('secondImage').src = evt.target.result;
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
